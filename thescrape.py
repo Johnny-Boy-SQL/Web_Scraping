@@ -1,8 +1,6 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
 # %%
 import pandas as pd
-from splinter import Browser
+from splinter import browser
 from bs4 import BeautifulSoup as bs
 from datetime import datetime
 import os
@@ -13,9 +11,9 @@ from pprint import pprint
 
 # %%
 # run chrome driver
-def init_browser()
-    executable_path = {'executable_path':"C:\Drivers\chromedriver\chromedriver.exe"}
-    browser = Browser("chrome", **executable_path, headless=False)
+def init_browser():
+    executable_path = {'executable_path': "C:\Drivers\chromedriver\chromedriver.exe"}
+    return browser = Browser("chrome", **executable_path, headless=False)
 
 
 # %%
@@ -50,9 +48,9 @@ def scrape_info():
     stuff
 
 
-    # %%
-    # I need to save the image url as a variable. Having trouble
-    #image = stuff.a["src"]
+    featured = "image/featured/mars3.jpg/"
+    url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/"
+    featured_url = url + featured
 
 
     # %%
@@ -116,17 +114,13 @@ def scrape_info():
 
 
     # %%
-   mars_py_dict={
+mars_py_dict={
         "mars_news_title": news_title,
         "mars_news_paragraph": news_p,
-        "featured_mars_image": featured_image_url,
-        #"mars_facts": mars_html_table,
+        "featured_mars_image": featured_url,
+        "mars_facts": mars_html_table,
         "mars_hemisphers": hemisphere_image_urls
    }
-   browser.quit()
+browser.quit()
 
-   return mars_py_dict
-
-    
-
-
+return mars_py_dict
