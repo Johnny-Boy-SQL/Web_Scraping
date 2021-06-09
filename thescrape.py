@@ -20,30 +20,19 @@ def init_browser():
 def scrape_info():
     url = "https://mars.nasa.gov/news/"
     browser.visit(url)
-
-
-    # %%
     html = browser.html
     soup = bs(html,"html.parser")
-
-
-    # %%
     news_title = soup.find("div",class_="content_title").text
     news_p = soup.find("div", class_="article_teaser_body").text
-    print(f"Title: {news_title}")
-    print(f"Para: {news_p}")
+    # print(f"Title: {news_title}")
+    # print(f"Para: {news_p}")
 
-
-    # %%
     # load up the url
     url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/index.html"
     browser.visit(url)
 
     html = browser.html
     soup = bs(html, 'html.parser')
-
-
-    # %%
     stuff=soup.find('img',class_='headerimage fade-in')
     stuff
 
@@ -52,21 +41,15 @@ def scrape_info():
     url = "https://data-class-jpl-space.s3.amazonaws.com/JPL_Space/"
     featured_url = url + featured
 
-
-    # %%
     url = 'https://space-facts.com/mars/'
     tables = pd.read_html(url)
     tables
 
-
-    # %%
     mars_df=tables[2]
     mars_df.columns=["description", "value"]
     mars_df.set_index("description",inplace=True)
     mars_df
 
-
-    # %%
     mars_html_table=mars_df.to_html()
     mars_html_table.replace('\n','')
 
